@@ -13,6 +13,15 @@
   </head>
 
   <body>
+    <p><%= t(:welcome) %></p>
+    <div class="btn-group">
+      <% I18n.available_locales.each do |locale| %>
+        <button class="btn btn-outline-primary">
+          <%= link_to t(locale), url_for(locale: locale) %>
+        </button>
+      <% end %>
+    </div>
+
     <nav class="navbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
