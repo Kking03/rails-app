@@ -1,0 +1,17 @@
+<div class="sign_in_container">
+  <h2 class="title">Вход</h2>
+
+  <div class="mt">
+    <%= form_with scope: :session, url: session_path, data: {turbo: "false"} do |form| %>
+      <p><%= form.label :login, 'Ваш логин' %></p>
+      <p><%= form.text_field :login, class: 'form-text-field' %></p>
+
+      <p><%= form.label :password, 'Ваш пароль' %></p>
+      <p><%= form.password_field :password, class: 'form-text-field' %></p>
+
+      <p><%= form.submit 'Войти', class: 'btn btn-outline-primary' %></p>
+    <% end %>
+  </div>
+</div>
+
+

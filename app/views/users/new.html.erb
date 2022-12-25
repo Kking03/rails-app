@@ -1,0 +1,20 @@
+<div class="reg_container">
+  <h2 class="title">Join to start clicking</h2>
+
+  <div class="mt">
+    <%= form_with model: @user, data: {turbo: "false"} do |form| %>
+      <p><%= form.label :login, 'Ваш логин' %></p>
+      <p><%= form.text_field :login, class: 'form-text-field' %></p>
+
+      <p><%= form.label :email, 'Ваша почта' %></p>
+      <p><%= form.text_field :email, class: 'form-text-field' %></p>
+
+      <p><%= form.label :password, 'Придумайте пароль' %></p>
+      <p><%= form.password_field :password, class: 'form-text-field' %></p>
+
+      <p><%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-primary'%></p>
+    <% end %>
+  </div>
+</div>
+
+

@@ -1,0 +1,10 @@
+<h1>Clicker#preview</h1>
+<p>Find me in app/views/clicker/preview.html.erb</p>
+
+<%= form_with url: '/clicker/click', method: :post do |form|%>
+    <%= form.submit 'Click', class: 'btn btn-outline-primary' %>
+<% end %>
+
+<div id = "show_clicks_container">
+
+</div>
