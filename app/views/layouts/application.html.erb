@@ -10,49 +10,60 @@
     <%= javascript_importmap_tags %>
     <!--Подключение bootstrap по ссылке:-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Подключаем шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <p><%= t(:welcome) %></p>
-    <div class="btn-group">
-      <% I18n.available_locales.each do |locale| %>
-        <button class="btn btn-outline-primary">
-          <%= link_to t(locale), url_for(locale: locale) %>
-        </button>
-      <% end %>
-    </div>
-
+    <header>
+      <!--<p><%= t(:welcome) %></p>-->
+    </header>
+    
     <nav class="navbar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <% if current_user.present? %>
-            <%= "@#{current_user.login}" %>
-            <%= button_to 'Выйти', session_path, method: :delete %>
-          <% else %>
-            <%= link_to 'Регистрация', new_user_path, class: 'btn btn-outline-primary' %>
-            <%= link_to 'Вход', new_session_path, class: 'btn btn-outline-primary' %>
-          <% end %>
-        </li>
-      </ul>
+      <a class="navbar-brand">
+        <!--картинка кликера-->
+        <%= image_tag "logo.png", class: "clicker-logo" %> 
+        <%= link_to t(:leaderboards), leaderboard_show_path, class: "leader-list"%>
+      </a>
+      <% if current_user.present? %>
+        <%= "@#{current_user.login}" %>
+        <%= button_to t(:sign_out), session_path, method: :delete, class: "btn btn-link" %>
+        <!--<%= button_to t(:sign_out), session_path, method: :delete %>-->
+      <% else %>
+        <div class="btn-group btn-log">
+          <%= link_to t(:sign_up), new_user_path, class: 'btn btn-outline-dark btn-sm' %>
+          <%= link_to t(:sign_in), new_session_path, class: 'btn btn-success btn-sm ' %>
+        </div>
+      <% end %>
     </nav>
 
-    <%= yield %>
-    <% if flash[:alert].present? %>
-      <p><%= flash[:alert] %></p>
-    <% end %>
+    <main>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <% if flash[:alert].present? %>
+              <p><%= flash[:alert] %></p>
+            <% end %>
 
-    <% if flash[:notice].present? %>
-      <p><%= flash[:notice] %></p>
-    <% end %>
+            <% if flash[:notice].present? %>
+              <p><%= flash[:notice] %></p>
+            <% end %>
+        </div>
 
-    <!-- 
-    <p>
-      <% flash.each do |_type, msg| %>
-        <%= msg %>
-      <% end %>
-    </p>
-    -->
-
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p class="copyright">© К. Г. Королев, 2022</p>
+      <div class="btn-group btn-locale">
+        <% I18n.available_locales.each do |locale| %>
+          <button class="btn btn-outline-primary btn-sm">
+            <%= link_to t(locale), url_for(locale: locale) %>
+          </button>
+        <% end %>
+      </div>
+    </footer>
   </body>
-
 </html>

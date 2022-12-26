@@ -1,8 +1,29 @@
-<h1>Leaderboard#show</h1>
-<p>Find me in app/views/leaderboard/show.html.erb</p>
+<div class="col-2">
+</div>
+<div class="leaders-container col-8 row d-flex justify-content-center">
+  <h1><%= t(:leaderboards) %></h1>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><%= t(:player) %></th>
+          <th scope="col"><%= t(:score) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@players.each_with_index do |player, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= player[0] %></td>
+            <td>
+              <%= player[1] %>
+              <% if player[2] %>
+                <%= link_to t(:reset), leaderboard_update_path, method: :get %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= button_to 'Очистить свой результат', leaderboard_update_path, method: :get %>
-
-<% @scores.each do |score| %>
-  <p>Кликов: <%= score.clicks %></p>
-<% end %>

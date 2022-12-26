@@ -1,20 +1,28 @@
-<div class="reg_container">
-  <h2 class="title">Join to start clicking</h2>
+<div class="col-4">
+</div>
+<div class="sign-up-container col-4">
+  <h4><%= t(:join_us) %></h4>
 
-  <div class="mt">
-    <%= form_with model: @user, data: {turbo: "false"} do |form| %>
-      <p><%= form.label :login, 'Ваш логин' %></p>
-      <p><%= form.text_field :login, class: 'form-text-field' %></p>
+    <%= form_with model: @user, data: {turbo: "false"}, class: "form-group" do |form| %>
+      <div class="form-group">
+        <%= form.label :login, t(:login) %>
+        <%= form.text_field :login, class: 'form-text-field form-control' %>
+      </div>
 
-      <p><%= form.label :email, 'Ваша почта' %></p>
-      <p><%= form.text_field :email, class: 'form-text-field' %></p>
+      <div class="form-group">
+        <%= form.label :email, t(:email) %>
+        <%= form.text_field :email, class: 'form-text-field form-control', type: "email", id: "exampleInputEmail1", 'aria-describedby': "emailHelp" %>
+        <small id="emailHelp" class="form-text text-muted"><%= t(:safety_msg) %></small>
+      </div>
 
-      <p><%= form.label :password, 'Придумайте пароль' %></p>
-      <p><%= form.password_field :password, class: 'form-text-field' %></p>
-
-      <p><%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-primary'%></p>
+      <div class="form-group">
+        <%= form.label :password, t(:password) %>
+        <%= form.password_field :password, class: 'form-text-field form-control' %>
+      </div>
+      <div class="d-flex justify-content-center">
+        <%= form.submit t(:sign_up), class: 'btn btn-outline-primary'%>
+      </div>
     <% end %>
-  </div>
 </div>
 
 
