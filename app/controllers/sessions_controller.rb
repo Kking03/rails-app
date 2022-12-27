@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :check_log_in, only: %i[new create]
+
   def new
   end
 
@@ -21,4 +23,13 @@ class SessionsController < ApplicationController
     session.delete(:user_id)
     redirect_to new_session_path, notice: "Вы вышли из аккаунта"
   end
+
+  private
+
+  def check_log_in
+    if current_user.present?
+      redirect_to clicker_preview_path
+    end
+  end
+
 end

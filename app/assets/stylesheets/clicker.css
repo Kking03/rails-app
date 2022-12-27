@@ -1,0 +1,37 @@
+.click-model {
+  width: 200px;
+  height: 150px;
+}
+
+.score {
+  text-align: center;
+}
+
+#score {
+  text-align: right;
+}
+
+.click_container div {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  animation-name: example;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0%   {left:0px; top:0px; }
+
+  12%  {left:200px; top:0px; transform: rotate(90deg);}
+  24%  {left:200px; top:200px; transform: rotate(180deg);}
+  36%  {left:0px; top:200px; transform: rotate(270deg);}
+
+  48% {left:0px; top:0px; transform: rotate(180deg);}
+
+  60%  {left:-200px; top:0px; transform: rotate(90deg)}
+  72%  {left:-200px; top:200px; transform: rotate(0deg)}
+  84%  {left:0px; top:200px; transform: rotate(-90deg)}
+  100% {eft:0px; top:0px;}
+}

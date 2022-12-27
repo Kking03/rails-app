@@ -1,8 +1,8 @@
 <div class="col-2">
 </div>
-<div class="leaders-container col-8 row d-flex justify-content-center">
+<div class="leaders-container col-8" id="blink">
   <h1><%= t(:leaderboards) %></h1>
-  <table class="table table-striped">
+  <table class="table table-striped" id="leaderborads-table">
     <thead>
         <tr>
           <th scope="col">#</th>
@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <%@players.each_with_index do |player, index| %>
-          <tr>
+          <tr onmouseout="mouseOut(this)" onmouseover="mouseOver(this)">
             <th scope="row"><%= index + 1 %></th>
             <td><%= player[0] %></td>
             <td>
@@ -27,3 +27,21 @@
   </table>
 </div>
 
+<script>
+  var tr = document.getElementById("leaderborads-table").getElementsByTagName("th");
+  var delayInMilliseconds = 500; //1 second
+  setTimeout(function() {
+    if (tr[3]) { tr[3].style.setProperty("background-color", "gold", "important") }
+  }, delayInMilliseconds);
+  setTimeout(function() {  
+    if (tr[4]) { tr[4].style.setProperty("background-color", "#C0C0C0", "important") }
+  }, delayInMilliseconds*2);
+  setTimeout(function() {
+    if (tr[5]) {tr[5].style.setProperty("background-color", "#CD7F32", "important") }
+  }, delayInMilliseconds*3);
+
+    //миллисекунды зацикливания вызова функции ниже
+  setInterval (blinke_funk, 150);
+  var blinke_speed = 150; //миллисекунды анимации
+  $("blink").fadeIn(blinke_speed).fadeOut(blinke_speed);
+</script>

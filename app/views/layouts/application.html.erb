@@ -12,30 +12,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--Подключаем шрифт-->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <script>
+      function mouseOver(el) {
+        originalColor = el.style.backgroundColor;
+        el.style.backgroundColor = "#98FB98";
+      }
+
+      function mouseOut(el) {
+        el.style.backgroundColor = originalColor;
+      }
+    </script>
+    
   </head>
 
-  <body>
+  <body id="wrapper">
     <header>
-      <!--<p><%= t(:welcome) %></p>-->
+       <nav class="navbar">
+          <a class="navbar-brand", href="<%= clicker_preview_path %>">
+            <!--картинка кликера-->
+            <%= image_tag "logo.png", class: "clicker-logo" %> 
+            <%= link_to t(:leaderboards), leaderboard_show_path, class: "leader-list"%>
+          </a>
+        <% if current_user.present? %>
+          <p id="nickname"><%= "@#{current_user.login}" %></p>
+          <%= button_to t(:sign_out), session_path, method: :delete, class: "btn btn-link btn-sign-out" %>
+          <!--<%= button_to t(:sign_out), session_path, method: :delete %>-->
+        <% else %>
+          <div class="btn-log">
+            <%= link_to t(:sign_up), new_user_path, class: 'btn btn-outline-dark btn-sm rounded-pill' %>
+            <%= link_to t(:sign_in), new_session_path, class: 'btn btn-outline-success btn-sm rounded-pill btn-sign-in' %>
+          </div>
+        <% end %>
+      </nav>
     </header>
-    
-    <nav class="navbar">
-      <a class="navbar-brand">
-        <!--картинка кликера-->
-        <%= image_tag "logo.png", class: "clicker-logo" %> 
-        <%= link_to t(:leaderboards), leaderboard_show_path, class: "leader-list"%>
-      </a>
-      <% if current_user.present? %>
-        <%= "@#{current_user.login}" %>
-        <%= button_to t(:sign_out), session_path, method: :delete, class: "btn btn-link" %>
-        <!--<%= button_to t(:sign_out), session_path, method: :delete %>-->
-      <% else %>
-        <div class="btn-group btn-log">
-          <%= link_to t(:sign_up), new_user_path, class: 'btn btn-outline-dark btn-sm' %>
-          <%= link_to t(:sign_in), new_session_path, class: 'btn btn-success btn-sm ' %>
-        </div>
-      <% end %>
-    </nav>
 
     <main>
       <div class="container">

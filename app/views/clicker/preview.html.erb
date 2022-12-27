@@ -1,10 +1,26 @@
-<h1>Clicker#preview</h1>
-<p>Find me in app/views/clicker/preview.html.erb</p>
-
-<%= form_with url: '/clicker/click', method: :post do |form|%>
-    <%= form.submit 'Click', class: 'btn btn-outline-primary' %>
-<% end %>
-
-<div id = "show_clicks_container">
-
+<div class="col-4">
+    <div class="container score-container">
+        <div class="row">
+            <div class="col-6">
+                <p id="score"> <%= t(:level) + ":" %> </p>
+                <p id="score"> <%= t(:score) + ":" %> </p>
+            </div>
+            <div id = "show_clicks_container" class="col-4">
+            </div>
+        </div>
+    </div>
 </div>
+<div class="click_container col-4 d-flex justify-content-center">
+        <%= form_with url: '/clicker/click', method: :post do |form| %>
+            <div id="click-div"><%= image_submit_tag "plane.png", class: 'click-model' %></div>
+        <% end %>
+</div>
+
+<!--
+<script>
+    var delayInMilliseconds = 100; //1 second
+    setTimeout(function() {
+      document.querySelector('.click-model').click()
+    }, delayInMilliseconds);
+</script>
+-->

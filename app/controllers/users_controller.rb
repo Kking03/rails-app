@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_log_in, only: %i[new create]
+
   def new
     @user = User.new
   end
@@ -27,6 +29,14 @@ class UsersController < ApplicationController
       redirect_to new_session_path
     end 
 
+  end
+
+  private
+
+  def check_log_in
+    if current_user.present?
+      redirect_to clicker_preview_path
+    end
   end
 
 end

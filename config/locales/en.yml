@@ -13,3 +13,5 @@ en:
   player: "player"
   score: "score"
   reset: "reset"
+  level: "level"
+  access_denied: "You are not allowed to access this page. Log in first"
