@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to clicker_preview_path
     else
-      flash[:alert] = 'Неправильный email или пароль'
+      flash[:alert] = t(:incorrect_data)
       # render :new
       redirect_to new_session_path
     end
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    redirect_to new_session_path, notice: "Вы вышли из аккаунта"
+    redirect_to new_session_path, notice: t(:logged_out)
   end
 
   private

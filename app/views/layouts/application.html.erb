@@ -51,11 +51,10 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           <% if flash[:alert].present? %>
-              <p><%= flash[:alert] %></p>
-            <% end %>
-
+            <p id="alert"><%= flash[:alert] %></p>
+          <% end %>
             <% if flash[:notice].present? %>
-              <p><%= flash[:notice] %></p>
+              <p id="notice"><%= flash[:notice] %></p>
             <% end %>
         </div>
 

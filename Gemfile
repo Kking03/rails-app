@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.3"
+ruby "3.1.2"
 
 # internationalization
 gem 'rails-i18n'
@@ -67,3 +67,12 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+end
+
+
+gem "rspec-rails", "~> 6.0"

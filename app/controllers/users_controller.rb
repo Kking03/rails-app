@@ -10,13 +10,19 @@ class UsersController < ApplicationController
     data = user_params.values
    
     if data[0].empty? || data[1].empty? || data[2].empty?
-      flash[:alert] = 'Нельзя оставлять поля пустыми'
+      flash[:alert] = t(:empty_fields)
+      redirect_to new_user_path
+    elsif !user_params[:login].match?(/\A[a-zA-Z_0-9]+\z/)
+      flash[:alert] = t(:invalid_smb)
       redirect_to new_user_path
     elsif User.find_by(login: user_params[:login]).present?
-      flash[:alert] = 'Логин уже используется'
+      flash[:alert] = t(:busy_login)
       redirect_to new_user_path
     elsif User.find_by(email: user_params[:email]).present?
-      flash[:alert] = 'Email уже используется'
+      flash[:alert] = t(:busy_email)
+      redirect_to new_user_path
+    elsif user_params[:password].length < 8
+      flash[:alert] = t(:min_psw)
       redirect_to new_user_path
     else
       new_user = User.create(user_params)

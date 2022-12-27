@@ -1,3 +1,17 @@
 * {
   font-family: 'Press Start 2P';
 }
+
+#alert {
+  padding: 10px;
+  background-color: rgb(255, 85, 85);
+  border-radius: 30px;
+  opacity: 0.9;
+}
+
+#notice {
+  padding: 10px;
+  background-color: rgb(44, 255, 61);
+  border-radius: 30px;
+  opacity: 0.9; 
+}
